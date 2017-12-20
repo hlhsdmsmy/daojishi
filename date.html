@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	div{
+		width: 500px;
+		height: auto;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 0 auto;
+		color: orangered;
+	}
+	span{
+		font-size: 40px;
+		font-weight: 600;
+		color: blue;
+	}
+</style>
+<body>
+	<div>距离放学还有：
+		<!-- <span></span>天
+		<span></span>时 -->
+		<span></span>分
+		<span></span>秒
+	</div>
+</body>
+</html>
+<script>
+	// let date = new Date('12/28/2017 14:00:00');
+	// let date = new Date(2017,11,28,14,00,00);	/*月份减一是当前月份*/
+	
+	// date.getUTCDate();		/*世界时间*/
+	// date.getTimeZoneOffset();	/**/
+	// date.getDate();			/*号*/
+	// date.getTime();			/*时间到当前时间 单位毫秒*/
+	// date.getMonth();		/* 0~11 设置减一获取加一  月份*/
+	// date.getDay();			/*周*/
+	// let date = new Date;
+	// date.setFullYear(2018);
+	// date.setMonth(11);
+	// date.setDate(25);
+	// console.dir(date);
+
+	// let date = new Date(2017,11,25,12,30,0);
+	let date = new Date();
+	date.setMinutes(date.getMinutes()+10);
+	let spans = document.querySelectorAll('div>span');
+	move();
+	setInterval(move,1000)
+	function move(){
+	let arr = [];
+	let now = new Date();
+	let time = Math.floor((date.getTime() - now.getTime())/1000); 
+	// let d = Math.floor(time/60/60/24);
+	// arr.push(d);
+	// time = time%(60*60*24);
+	// let h = Math.floor(time/(60*60));
+	// time = time%(60*60);
+	// arr.push(h);
+	let m = Math.floor(time/60);
+	arr.push(m);
+	let s = Math.floor(time%60);
+	arr.push(s);
+	spans.forEach((element,index)=>{
+		element.innerText = arr[index];
+	})
+	}
+</script>
